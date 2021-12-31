@@ -1,0 +1,16 @@
+{
+  // 带有 * 的为必须安装的插件，其余为推荐安装插件
+  "recommendations": [
+    "dbaeumer.vscode-eslint", // * eslint
+    "esbenp.prettier-vscode", // * prettier
+    "octref.vetur", // * vetur
+    "eamodio.GitLens", // * GitLens
+    "DonJayamanne.GitHistory", // * GitHistory
+    "mhutchie.git-graph", // git-graph git提交视图
+    "msjsdiag.debugger-for-chrome", // debugger-for-chrome chrome调试
+    "steoates.autoimport", // autoimport 自动引入
+    "lihuiwang.vue-alias-skip", // vue-alias-skip 点击跳转到对应目录
+    "editorconfig.editorconfig", // editorconfig 项目配置相关
+    "gruntfuggly.todo-tree" // todo-tree 待处理目录
+  ]
+}

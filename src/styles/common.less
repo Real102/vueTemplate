@@ -1,0 +1,187 @@
+/**
+ * @Desc 全局通用样式
+ */
+
+/* 全局遮幕层 */
+.g-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.3);
+}
+
+/* 全局块(卡片)样式 */
+// 带阴影内边距盒子
+.g-block {
+	padding: 26px 24px;
+	background: #ffffff;
+	box-shadow: 2px 2px 6px 0 rgba(0, 21, 41, 0.12);
+	border-radius: 2px;
+}
+.g-block-header {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-bottom: 24px;
+}
+.g-block-title {
+	margin-left: 10px;
+	font-size: 16px;
+}
+.g-block-icon {
+	margin: -4px 0 0 10px;
+	cursor: pointer;
+}
+.g-block-vertical {
+	width: 3px;
+	height: 16px;
+	background: #303133;
+	border-radius: 2.5px;
+}
+
+/* 全局按钮（禁用，深色，浅色）*/
+.g-btn__forbid {
+	font-size: 14px;
+	color: #a6aab8;
+	background-color: #fff;
+	border: 1px solid #dcdfe6;
+	border-radius: 2px;
+	cursor: no-drop;
+}
+.g-btn__dark {
+	font-size: 14px;
+	color: #fff;
+	background-color: #2962ff;
+	border-radius: 2px;
+	cursor: pointer;
+	&:active {
+		background-color: #0c64eb;
+	}
+}
+.g-btn__light {
+	font-size: 14px;
+	color: #303133;
+	background-color: #fff;
+	border: 1px solid #dcdfe6;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+/* 必填项*上标样式 */
+.g-sup__must::after {
+	content: '*';
+	display: inline-block;
+	height: 16px;
+	margin: -10px 0 0 2px;
+	vertical-align: middle;
+	color: red;
+	font-size: 16px;
+}
+
+/* 全局 input 样式*/
+.g-input__normal {
+	border: 1px solid #dcdfe6 !important;
+	border-radius: 2px;
+	transition: border 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+	&:focus {
+		border: 1px solid #007dff !important;
+	}
+}
+.g-input__err {
+	border: 1px solid #ff4d4f !important;
+	border-radius: 2px;
+	transition: border 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+	&:focus {
+		border: 1px solid #ff4d4f !important;
+	}
+}
+
+/* 全局表格样式ul li */
+.g-table {
+	width: 100%;
+	// border-top: 1px solid #e8e8e8;
+}
+.g-table-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 14px 32px;
+	width: 100%;
+	min-height: 54px;
+	height: auto;
+	// line-height: 54px;
+	border-left: 1px solid #e8e8e8;
+	border-right: 1px solid #e8e8e8;
+	border-bottom: 1px solid #e8e8e8;
+	&:first-child {
+		border-top: 1px solid #e8e8e8;
+	}
+}
+.g-table-row__empty {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 118px;
+	border-top: 1px solid #e8e8e8;
+	border-left: 1px solid #e8e8e8;
+	border-right: 1px solid #e8e8e8;
+	border-bottom: 1px solid #e8e8e8;
+}
+
+// 输入框错误样式
+// .input-msg-enter-active,
+// .input-msg-leave-active {
+//   transition: all .4s ease;
+// }
+// .input-msg-enter {
+//   opacity: 0;
+//   transform: translateY(-100%);
+// }
+
+// .input-msg-leave-to {
+//   opacity: 0;
+//   transform: translateY(-100%);
+// }
+
+// 列表动态样式
+.list-complete-item {
+	transition: transform 0.2s, opacity 0.2s;
+}
+.list-complete-enter
+/* .list-complete-leave-active for below version 2.1.8 */ {
+	opacity: 0;
+	transform: translateY(-10px);
+}
+.list-complete-leave-to {
+	transition: none;
+}
+.list-complete-leave-active {
+	position: absolute;
+}
+
+/* 滑动动画效果 */
+.slide-enter-active,
+.slide-leave-active {
+	transition: all 0.2s;
+}
+.slide-enter {
+	opacity: 0;
+	transform: translateX(10px);
+}
+.slide-leave-to {
+	opacity: 0;
+	transform: translateX(10px);
+}
+
+/* 淡入淡出动画效果 */
+.fade-enter-active,
+.fade-leave-active {
+	transition: all 0.2s;
+}
+.fade-enter,
+.fade-leave-to {
+	opacity: 0;
+}

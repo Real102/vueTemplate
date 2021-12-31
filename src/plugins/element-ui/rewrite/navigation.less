@@ -1,0 +1,36 @@
+/**
+ * 导航组件（外层统一加一个 html 选择器以提升优先级）
+ */
+// dropdown 下拉菜单样式
+html .el-dropdown-menu__item {
+  list-style: none;
+  line-height: 36px;
+  padding: 0 20px;
+  margin: 0;
+  font-size: 14px;
+  color: #606266;
+  cursor: pointer;
+  outline: none;
+  min-width: 150px;
+} 
+
+html .el-dropdown-menu__item:not(.is-disabled):hover{
+  background-color:#F5F7FA;
+  color:#007DFF;
+}
+
+// NavMenu 导航菜单
+html .el-menu {
+  border-right: 0;
+  width: 100%;
+}
+html .el-menu-item:hover {
+  background-color: #F5F7FA !important;
+  color: #1890ff !important;
+}
+
+// Popover 弹出框
+html .el-popover--plain {
+  padding: 11px;
+}
+

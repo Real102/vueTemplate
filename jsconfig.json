@@ -1,0 +1,25 @@
+/**
+ * @author wolfBerry
+ * @email 906368017@qq.com
+ * @create date 2021-09-06 14:53:10
+ * @modify date 2021-09-06 14:53:10
+ * @desc jsconfig.json
+ */
+
+/**
+ * 1. 自动引入Vue组件和普通Js模块
+ * 2. 在JS中自动引入node_modules中的JS（如下引入并添加lodash）
+ * 3. crtl+左键 可以点击链接直接跳转到该文件
+ */
+
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "docs"],
+  "include": ["src/**/*", "node_modules/lodash/*"]
+}

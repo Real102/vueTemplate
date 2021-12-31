@@ -1,0 +1,31 @@
+/**
+ * 表单组件（外层统一加一个 html 选择器以提升优先级）
+ */
+html {
+  /* 滑块 slider 刻度 */
+  .el-slider__stop {
+    margin-top: 6px;
+    height: 4px;
+    width: 1px;
+    border-radius: 100%;
+    background-color: #c0c4cc;
+    transform: translateX(-50%);
+    &:first-child {
+      margin-left: 2px;
+    }
+    &:last-child {
+      margin-left: -2px;
+    }
+  }
+
+  /* -----Cascader 级联选择器------ */
+  /* Cascader 选择勾号位置（调整为右边） */
+  .el-cascader-node__prefix {
+    left: initial;
+    right: 10px;
+  }
+  /* Cascader 选项（调整为左边padding值） */
+  .el-cascader-node {
+    padding: 0 30px 0 14px;
+  }
+}
