@@ -32,7 +32,7 @@ service.interceptors.request.use(
     return config
   },
   err => {
-    return Promise.inject(err)
+    return Promise.reject(err)
   }
 )
 

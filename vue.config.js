@@ -120,6 +120,18 @@ module.exports = {
     // 		.end()
     // }
 
+    // 配置worker-loader
+    config.module
+      .rule('worker')
+      .test(/\.worker\.js$/)
+      .use('worker-loader')
+      .loader('worker-loader')
+      .options({
+        inline: true,
+        fallback: false
+      })
+    config.module.rule('js').exclude.add(/\.worker\.js$/)
+
     // 修改初始显示的标题
     config.plugin('html').tap(args => {
       args[0].title = MAIN_TITLE

@@ -2,3 +2,4 @@ node_modules
 dist/
 docs/
 src/assets/
+src/plugins/worker
