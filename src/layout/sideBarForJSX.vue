@@ -52,6 +52,13 @@ export default {
       if (!['/404', '*'].includes(rt.path)) {
         if (!rt.meta?.hideSideBar) {
           if (rt.children?.length > 1) {
+            // 这里判断是否有多个子路由，并且子路由都是要显示的
+            const subChildren = []
+            rt.children?.forEach(srt => {
+              if (!srt.meta?.hideSideBar) {
+                subChildren.push(srt)
+              }
+            })
             this.routerData.push({
               path: rt.path,
               meta: rt.meta || {},
