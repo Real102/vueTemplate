@@ -1,4 +1,16 @@
 /**
+ * Search List
+ * 1. parseTime 时间格式化
+ * 2. debounce 防抖
+ * 3. deepClone 深拷贝
+ * 4. cleanArray 清空数组
+ * 5. isEqual 判断两对象是否相等
+ * 6. isAllNull 判断某对象所有key是否都为空
+ * 7. merge 合并两对象
+ * 8. getImageSize 获取网络图片size
+ */
+
+/**
  * @param {(Object|string|number)} time
  * @param {string} cFormat
  * @returns {string | null}
@@ -117,6 +129,65 @@ export function cleanArray(actual) {
   return newArray
 }
 
+/**
+ * @param {object} obj1
+ * @param {object} obj2
+ * @return {boolean}
+ * @desc 主要用于校验两个对象是否相等的方法。可用于判断某个temp跟原数据是否相等，即是否被修改过
+ */
+export const isEqual = (obj1, obj2) => {
+  // 需要注意一下：typeof null === 'object'
+  if (obj1 && obj2 && typeof obj1 === 'object' && typeof obj2 === 'object') {
+    // 比较两个对象的属性
+    const len1 = Object.keys(obj1).length
+    const len2 = Object.keys(obj2).length
+    let result = true
+    if (len1 === len2) {
+      Object.keys(obj1).forEach(key => {
+        if (typeof obj1[key] !== 'object') {
+          if (obj1[key] !== obj2[key]) {
+            result = false
+          }
+        } else {
+          if (isEqual(obj1[key], obj2[key]) === false) {
+            result = false
+          }
+        }
+      })
+      return result
+    } else {
+      return false
+    }
+  } else {
+    return obj1 === obj2
+  }
+}
+
+/**
+ * @param {object} obj
+ * @return {boolean}
+ * @desc 本方法主要用于判断某对象是否都为空的校验，如果都为空需要做null转换处理
+ */
+export const isAllNull = obj => {
+  let isNull = true
+  if (obj) {
+    if (typeof obj === 'object') {
+      Object.keys(obj).forEach(key => {
+        if (obj[key] && typeof obj[key] === 'object') {
+          if (!isAllNull(obj[key])) {
+            isNull = false
+          }
+        } else {
+          if (obj[key]) {
+            isNull = false
+          }
+        }
+      })
+    }
+  }
+  return isNull
+}
+
 // 合并对象
 export function merge(target) {
   for (let i = 1, j = arguments.length; i < j; i++) {
@@ -133,4 +204,25 @@ export function merge(target) {
   }
 
   return target
+}
+
+// 获取网络图片大小
+export const getImageSize = () => {
+  // 通过ajax请求，下载一次图片并返回arraybuffer文件，然后即可通过 arraybuffer.byteLength 获取文件大小
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET', this.selectData.url)
+    xhr.responseType = 'arraybuffer'
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        const arrayBuffer = xhr.response
+        if (arrayBuffer) {
+          resolve(arrayBuffer.byteLength)
+        } else {
+          reject(new Error('calculate fail'))
+        }
+      }
+    }
+    xhr.send(null)
+  })
 }
