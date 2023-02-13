@@ -1,5 +1,6 @@
 import axios from 'axios'
 import router from '@/router'
+import CryptoJS from 'crypto-js'
 import { getToken, removeToken } from '@/utils/auth'
 import { Message } from 'element-ui'
 
@@ -29,6 +30,7 @@ service.interceptors.request.use(
       // 增加登录token，用于校验登录token是否过期
       Authorization: getToken()
     })
+    setCancel(config)
     return config
   },
   err => {
@@ -39,6 +41,7 @@ service.interceptors.request.use(
 // TODO: 按项目要求调整状态码
 service.interceptors.response.use(
   response => {
+    removeCancel(response.config)
     if (response.status === 200) {
       const { code } = response.data
       // * 状态码的对应处理方案
@@ -78,3 +81,38 @@ service.interceptors.response.use(
   }
 )
 export default service
+
+// ! 拦截器统一避免表单重复提交（需要实际环境试用）
+// ! 存在限制：接口请求完成前不允许再次重复请求；接口的唯一性通过计算url+data的md5值来确定
+
+// 获取字符串md5值
+const getStringMd5 = str => {
+  const hash = CryptoJS.MD5(str).toString()
+  return hash
+}
+
+// 逻辑校验接口请求是否重复/频繁提交，若是则取消请求
+const CancelToken = axios.CancelToken
+const historyList = {}
+let cancel
+const setCancel = config => {
+  // 存储cancel方法
+  config.cancelToken = new CancelToken(function (c) {
+    cancel = c
+  })
+  const key = getStringMd5(config.url + '-' + config.data)
+  if (!historyList[key]) {
+    historyList[key] = cancel
+  } else {
+    // 如果已存在，那么执行cancel命令，避免重复提交
+    cancel()
+  }
+  return config
+}
+
+const removeCancel = config => {
+  const key = getStringMd5(config.url + '-' + config.data)
+  if (historyList[key]) {
+    delete historyList[key]
+  }
+}
