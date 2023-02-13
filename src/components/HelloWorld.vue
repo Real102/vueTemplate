@@ -88,6 +88,13 @@
           >awesome-vue</a
         >
       </li>
+      <li>
+        {{ $t('hello') }}
+      </li>
+      <br />
+      <li>
+        <button @click="handleChangeLang">修改语言环境</button>
+      </li>
     </ul>
   </div>
 </template>
@@ -97,6 +104,20 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  mounted() {
+    console.log(this)
+  },
+  methods: {
+    handleChangeLang() {
+      console.log(this.$root.$i18n.locale)
+      console.log(this.$i18n.locale)
+      if (this.$i18n.locale === 'zh') {
+        this.$i18n.locale = 'en'
+      } else {
+        this.$i18n.locale = 'zh'
+      }
+    }
   }
 }
 </script>

@@ -9,6 +9,8 @@ import '@/styles/sprite/sprite.less'
 import '@/router/permission.js'
 // 提示文案
 import msgTips from '@/lang/zh.js'
+// 国际化
+import { i18n } from '@/lang/i18n'
 
 // 全局引入数据埋点方法
 import submitBuriedPoint from '@/utils/buriedPoint.js'
@@ -29,5 +31,6 @@ Vue.prototype.$msgTips = msgTips
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount('#app')
